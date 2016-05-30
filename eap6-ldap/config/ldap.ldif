@@ -1,5 +1,7 @@
 #
-# dhcp-64-128:vagrant_ubuntu_openldap fabio$ ldapsearch -h localhost:3890 -D "cn=admin,dc=puppetlabs,dc=test" -w test -b "dc=puppetlabs,dc=test"
+# ldapsearch -h localhost:3890 -D "cn=admin,dc=puppetlabs,dc=test" -w test -b "dc=puppetlabs,dc=test"
+#
+
 # extended LDIF
 #
 # LDAPv3
@@ -46,9 +48,16 @@ sn: User
 mail: test@example.com
 userPassword:: cGFzcw==
 
+# manager, groups, puppetlabs.test
+dn: cn=manager,ou=groups,dc=puppetlabs,dc=test
+member: uid=test,ou=people,dc=puppetlabs,dc=test
+cn: manager
+objectClass: top
+objectClass: groupOfNames
+
 # search result
 search: 2
 result: 0 Success
 
-# numResponses: 6
-# numEntries: 5
+# numResponses: 7
+# numEntries: 6
