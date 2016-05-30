@@ -13,7 +13,6 @@
         <module>eap6-security</module>
         <module>eap6-valve</module>
         <module>eap6-ldap</module>
-        <module>jdap-simple-call</module>
     </modules>
 
     <properties>

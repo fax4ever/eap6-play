@@ -6,7 +6,6 @@ import org.junit.runners.JUnit4;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
-import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 import java.util.Hashtable;
 
@@ -42,6 +41,24 @@ public class SimpleCallIT {
         Hashtable env = new Hashtable();
         env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
         env.put(Context.PROVIDER_URL, "ldap://localhost:3890");
+        env.put(Context.SECURITY_AUTHENTICATION, "simple");
+        env.put(Context.SECURITY_PRINCIPAL, "uid=test,ou=people,dc=puppetlabs,dc=test");
+        env.put(Context.SECURITY_CREDENTIALS, "pass");
+
+        try {
+            new InitialDirContext(env);
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void go_user_simplifyUrl() {
+
+        Hashtable env = new Hashtable();
+        env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+        env.put(Context.PROVIDER_URL, "ldap://localhost:3890/dc=puppetlabs,dc=test");
         env.put(Context.SECURITY_AUTHENTICATION, "simple");
         env.put(Context.SECURITY_PRINCIPAL, "uid=test,ou=people,dc=puppetlabs,dc=test");
         env.put(Context.SECURITY_CREDENTIALS, "pass");
