@@ -13,6 +13,7 @@
         <module>eap6-security</module>
         <module>eap6-valve</module>
         <module>eap6-ldap</module>
+        <module>eap6-datasource</module>
     </modules>
 
     <properties>
@@ -47,6 +48,14 @@
             <dependency>
                 <groupId>org.jboss.bom.eap</groupId>
                 <artifactId>jboss-javaee-6.0-with-security</artifactId>
+                <version>${version.jboss.eap}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.bom.eap</groupId>
+                <artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
                 <version>${version.jboss.eap}</version>
                 <type>pom</type>
                 <scope>import</scope>
