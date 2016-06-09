@@ -49,13 +49,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- for custom login module -->
-        <dependency>
-            <groupId>org.picketbox</groupId>
-            <artifactId>picketbox</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- test -->
         <dependency>
             <groupId>junit</groupId>
