@@ -14,6 +14,7 @@
         <module>eap6-valve</module>
         <module>eap6-ldap</module>
         <module>eap6-datasource</module>
+        <module>eap-dependency</module>
     </modules>
 
     <properties>
