@@ -1,0 +1,69 @@
+<subsystem>
+    <datasources>
+        <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true">
+            <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
+            <driver>h2</driver>
+            <security>
+                <user-name>sa</user-name>
+                <password>sa</password>
+            </security>
+        </datasource>
+        <datasource jta="true" jndi-name="java:jboss/datasources/playDS" pool-name="playDS" enabled="true" use-ccm="true" statistics-enabled="true">
+            <connection-url>jdbc:mysql://33.33.33.1:3306/play</connection-url>
+            <driver-class>com.mysql.jdbc.Driver</driver-class>
+            <driver>mysql</driver>
+            <pool>
+                <min-pool-size>200</min-pool-size>
+                <max-pool-size>300</max-pool-size>
+            </pool>
+            <security>
+                <user-name>root</user-name>
+                <password>root</password>
+            </security>
+        </datasource>
+        <datasource jta="true" jndi-name="java:jboss/datasources/playOneDS" pool-name="playOneDS" enabled="true" use-ccm="true" statistics-enabled="true">
+            <connection-url>jdbc:mysql://33.33.33.1:3306/play</connection-url>
+            <driver-class>com.mysql.jdbc.Driver</driver-class>
+            <driver>mysql</driver>
+            <pool>
+                <min-pool-size>200</min-pool-size>
+                <max-pool-size>300</max-pool-size>
+            </pool>
+            <security>
+                <user-name>root</user-name>
+                <password>root</password>
+            </security>
+            <validation>
+                <check-valid-connection-sql>select 1</check-valid-connection-sql>
+                <validate-on-match>true</validate-on-match>
+                <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
+            </validation>
+        </datasource>
+        <datasource jta="true" jndi-name="java:jboss/datasources/playTwoDS" pool-name="playTwoDS" enabled="true" use-ccm="true" statistics-enabled="true">
+            <connection-url>jdbc:mysql://33.33.33.1:3306/play</connection-url>
+            <driver-class>com.mysql.jdbc.Driver</driver-class>
+            <driver>mysql</driver>
+            <pool>
+                <min-pool-size>200</min-pool-size>
+                <max-pool-size>300</max-pool-size>
+            </pool>
+            <security>
+                <user-name>root</user-name>
+                <password>root</password>
+            </security>
+            <validation>
+                <check-valid-connection-sql>select 1</check-valid-connection-sql>
+                <background-validation>true</background-validation>
+                <background-validation-millis>3000000</background-validation-millis>
+                <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"/>
+            </validation>
+        </datasource>
+        <drivers>
+            <driver name="h2" module="com.h2database.h2">
+                <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
+            </driver>
+            <driver name="mysql" module="com.mysql">
+                <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+            </driver>
+        </drivers>
+    </datasources>
