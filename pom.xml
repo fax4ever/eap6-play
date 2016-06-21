@@ -15,6 +15,10 @@
         <module>eap6-ldap</module>
         <module>eap6-datasource</module>
         <module>eap6-log4j</module>
+        <module>eap6-simple</module>
+        <module>eap6-simple2</module>
+        <module>eap6-jms</module>
+        <module>eap6-cluster-info</module>
     </modules>
 
     <properties>

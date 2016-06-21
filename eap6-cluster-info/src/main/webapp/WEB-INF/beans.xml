@@ -15,10 +15,11 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<!DOCTYPE jboss-web>
-<jboss-web xmlns="http://www.jboss.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://www.jboss.org/schema/jbossas 
-    http://www.jboss.org/schema/jbossas/jboss-web_7_2.xsd">
-  <security-domain>ldap</security-domain>
-</jboss-web>
+<!-- This file can be an empty text file (0 bytes) -->
+<!-- We're declaring the schema to save you time if you do have to configure 
+   this in the future -->
+<beans xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+        http://java.sun.com/xml/ns/javaee 
+        http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
+</beans>
