@@ -8,7 +8,6 @@ import javax.ejb.Remote;
  *         on 13/07/16
  */
 
-@Remote
 public interface NumberApi {
 
     int getNext();

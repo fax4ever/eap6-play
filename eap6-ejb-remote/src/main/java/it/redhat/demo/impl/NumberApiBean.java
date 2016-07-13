@@ -2,6 +2,7 @@ package it.redhat.demo.impl;
 
 import it.redhat.demo.NumberApi;
 
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 /**
@@ -10,6 +11,7 @@ import javax.ejb.Stateless;
  *         on 13/07/16
  */
 @Stateless
+@Remote(NumberApi.class)
 public class NumberApiBean implements NumberApi {
 
     @Override
