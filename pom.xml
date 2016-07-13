@@ -19,6 +19,8 @@
         <module>eap6-simple2</module>
         <module>eap6-jms</module>
         <module>eap6-cluster-info</module>
+        <module>eap6-ejb-remote</module>
+        <module>eap6-ejb-remote-invoker</module>
     </modules>
 
     <properties>
