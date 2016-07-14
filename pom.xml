@@ -20,7 +20,6 @@
         <module>eap6-jms</module>
         <module>eap6-cluster-info</module>
         <module>eap6-ejb-remote</module>
-        <module>eap6-ejb-remote-invoker</module>
         <module>eap6-ejb-jar-invoker</module>
     </modules>
 
