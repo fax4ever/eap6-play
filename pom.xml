@@ -22,6 +22,7 @@
         <module>eap6-ejb-remote</module>
         <module>eap6-ejb-jar-invoker</module>
         <module>eap6-rest</module>
+        <module>eap6-jdg-library-replicated</module>
     </modules>
 
     <properties>
@@ -36,6 +37,9 @@
         <!-- JEE 6 EAP Implementation -->
         <version.jboss.eap>6.4.7.GA</version.jboss.eap>
         <version.org.jboss.spec.jboss.javaee.6.0>3.0.2.Final-redhat-15</version.org.jboss.spec.jboss.javaee.6.0>
+
+        <!-- JDG 6.6 -->
+        <version.org.infinispan>6.4.0.Final-redhat-4</version.org.infinispan>
 
         <!-- SLFJ -->
         <version.org.slf4j>1.7.2.redhat-3</version.org.slf4j>
@@ -73,6 +77,14 @@
                 <groupId>org.jboss.spec</groupId>
                 <artifactId>jboss-javaee-6.0</artifactId>
                 <version>${version.org.jboss.spec.jboss.javaee.6.0}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.infinispan</groupId>
+                <artifactId>infinispan-bom</artifactId>
+                <version>${version.org.infinispan}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
