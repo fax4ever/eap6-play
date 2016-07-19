@@ -9,7 +9,7 @@
         <artifactId>eap6-play</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>eap6-jdg-library-replicated</artifactId>
+    <artifactId>eap6-jdg-lib-repl</artifactId>
     <packaging>war</packaging>
 
 </project>
