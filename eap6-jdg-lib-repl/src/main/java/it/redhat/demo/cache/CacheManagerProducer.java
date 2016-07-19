@@ -35,10 +35,8 @@ public class CacheManagerProducer {
     private void init() {
 
         GlobalConfiguration globalConfiguration = new GlobalConfigurationBuilder()
-                .transport().defaultTransport()
-                .globalJmxStatistics()
-                .allowDuplicateDomains(true)
-                .enable()
+                .transport().defaultTransport().addProperty("configurationFile","jgroups.xml")
+                .globalJmxStatistics().allowDuplicateDomains(true).enable()
                 .build();
 
         Configuration defaultConfiguration = new ConfigurationBuilder()
