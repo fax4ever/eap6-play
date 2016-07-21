@@ -1,12 +1,16 @@
 package it.redhat.demo.cache;
 
-import org.infinispan.configuration.cache.CacheMode;
-import org.infinispan.configuration.cache.Configuration;
-import org.infinispan.configuration.cache.ConfigurationBuilder;
+import it.redhat.demo.rest.AlfaRestService;
+import it.redhat.demo.rest.BetaRestService;
+import org.infinispan.configuration.cache.*;
 import org.infinispan.configuration.global.GlobalConfiguration;
 import org.infinispan.configuration.global.GlobalConfigurationBuilder;
 import org.infinispan.manager.DefaultCacheManager;
 import org.infinispan.manager.EmbeddedCacheManager;
+import org.infinispan.transaction.LockingMode;
+import org.infinispan.transaction.TransactionMode;
+import org.infinispan.transaction.lookup.GenericTransactionManagerLookup;
+import org.infinispan.util.concurrent.IsolationLevel;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
@@ -35,15 +39,46 @@ public class CacheManagerProducer {
     private void init() {
 
         GlobalConfiguration globalConfiguration = new GlobalConfigurationBuilder()
-                .transport().defaultTransport().addProperty("configurationFile","jgroups.xml")
-                .globalJmxStatistics().allowDuplicateDomains(true).enable()
+                .transport()
+                    .defaultTransport()
+                    .clusterName("eap6-jdg-lib-repl")
+                    .distributedSyncTimeout(600000l)
+                    .addProperty("configurationFile","jgroups.xml")
+                .globalJmxStatistics()
+                    .allowDuplicateDomains(true)
+                    .enable()
                 .build();
 
-        Configuration defaultConfiguration = new ConfigurationBuilder()
-                .clustering().cacheMode(CacheMode.DIST_ASYNC)
-                .build();
+        InvocationBatchingConfigurationBuilder defaultBuilder = new ConfigurationBuilder()
+                .clustering()
+                    .cacheMode(CacheMode.REPL_ASYNC)
+                    .stateTransfer()
+                        .timeout(30000000)
+                        .fetchInMemoryState(true)
+                        .chunkSize(1048576)
+                        .awaitInitialTransfer(true)
+                .transaction()
+                    .transactionMode(TransactionMode.TRANSACTIONAL)
+                    .lockingMode(LockingMode.OPTIMISTIC)
+                    .transactionManagerLookup(new GenericTransactionManagerLookup())
+                    .syncCommitPhase(true)
+                    .useSynchronization(false)
+                    .cacheStopTimeout(10000)
+                .locking()
+                    .isolationLevel(IsolationLevel.READ_COMMITTED)
+                    .concurrencyLevel(1000)
+                    .useLockStriping(false)
+                    .lockAcquisitionTimeout(600000l)
+                .invocationBatching()
+                    .enable(true);
 
-        cacheManager = new DefaultCacheManager(globalConfiguration, defaultConfiguration);
+        Configuration alfaConfiguration = defaultBuilder.build();
+        Configuration betaConfiguration = defaultBuilder.build();
+
+        cacheManager = new DefaultCacheManager(globalConfiguration, defaultBuilder.build());
+        cacheManager.defineConfiguration(AlfaRestService.CACHE_NAME, alfaConfiguration);
+        cacheManager.defineConfiguration(BetaRestService.CACHE_NAME, betaConfiguration);
+
         cacheManager.start();
 
     }
