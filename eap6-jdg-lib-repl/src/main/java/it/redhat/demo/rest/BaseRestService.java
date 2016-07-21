@@ -84,6 +84,7 @@ public abstract class BaseRestService {
     }
 
     @Path("list/{max}")
+    @GET
     public List<String> list(@PathParam("max") Integer max) {
         ArrayList<String> result = new ArrayList<>();
 
