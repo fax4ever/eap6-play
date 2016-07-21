@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 /**
  * @author Fabio Massimo Ercoli
@@ -35,14 +36,15 @@ public class BatchRestService {
     }
 
     @POST
-    public void ok() {
+    @Path("{max}")
+    public void ok(@PathParam("max") Integer max) {
 
         alfa.startBatch();
         beta.startBatch();
 
         alfa.clear();
         beta.clear();
-        for (int i=0; i<1000000; i++) {
+        for (int i=0; i<max; i++) {
             alfa.put("akey" + i, "avalue" + i);
             beta.put("bkey" + i, "bvalue" + i);
         }
@@ -53,14 +55,15 @@ public class BatchRestService {
     }
 
     @DELETE
-    public void ko() {
+    @Path("{max}")
+    public void ko(@PathParam("max") Integer max) {
 
         alfa.startBatch();
         beta.startBatch();
 
         alfa.clear();
         beta.clear();
-        for (int i=0; i<500000; i++) {
+        for (int i=0; i<max; i++) {
             alfa.put("akey" + i, "avalue" + i + "WRONG");
             beta.put("bkey" + i, "bvalue" + i + "WRONG");
         }
