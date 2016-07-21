@@ -49,16 +49,24 @@ public class CacheManagerProducer {
                     .enable()
                 .build();
 
-        StateTransferConfigurationBuilder replicated = new ConfigurationBuilder()
+        Configuration replicated = new ConfigurationBuilder()
             .clustering()
                 .cacheMode(CacheMode.REPL_ASYNC)
             .stateTransfer()
                 .timeout(30000000)
                     .fetchInMemoryState(true)
                     .chunkSize(1048576)
-                    .awaitInitialTransfer(true);
+                    .awaitInitialTransfer(true)
+        .build();
 
-        InvocationBatchingConfigurationBuilder transactional = replicated
+        Configuration transactional = new ConfigurationBuilder()
+            .clustering()
+                .cacheMode(CacheMode.REPL_ASYNC)
+            .stateTransfer()
+                .timeout(30000000)
+                    .fetchInMemoryState(true)
+                    .chunkSize(1048576)
+                    .awaitInitialTransfer(true)
             .transaction()
                 .transactionMode(TransactionMode.TRANSACTIONAL)
                 .lockingMode(LockingMode.OPTIMISTIC)
@@ -72,11 +80,12 @@ public class CacheManagerProducer {
                 .useLockStriping(false)
                 .lockAcquisitionTimeout(600000l)
             .invocationBatching()
-                .enable(true);
+                .enable(true)
+        .build();
 
         cacheManager = new DefaultCacheManager(globalConfiguration);
-        cacheManager.defineConfiguration(ReplicatedRestService.CACHE_NAME, replicated.build());
-        cacheManager.defineConfiguration(TransactionalRestService.CACHE_NAME, transactional.build());
+        cacheManager.defineConfiguration(ReplicatedRestService.CACHE_NAME, replicated);
+        cacheManager.defineConfiguration(TransactionalRestService.CACHE_NAME, transactional);
 
         cacheManager.start();
 
