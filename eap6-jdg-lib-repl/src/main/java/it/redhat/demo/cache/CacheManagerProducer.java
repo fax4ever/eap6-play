@@ -54,9 +54,7 @@ public class CacheManagerProducer {
                 .cacheMode(CacheMode.REPL_ASYNC)
             .stateTransfer()
                 .timeout(30000000)
-                    .fetchInMemoryState(true)
-                    .chunkSize(1048576)
-                    .awaitInitialTransfer(true)
+                .chunkSize(1048576)
         .build();
 
         Configuration transactional = new ConfigurationBuilder()
@@ -64,9 +62,7 @@ public class CacheManagerProducer {
                 .cacheMode(CacheMode.REPL_ASYNC)
             .stateTransfer()
                 .timeout(30000000)
-                    .fetchInMemoryState(true)
-                    .chunkSize(1048576)
-                    .awaitInitialTransfer(true)
+                .chunkSize(1048576)
             .transaction()
                 .transactionMode(TransactionMode.TRANSACTIONAL)
                 .lockingMode(LockingMode.OPTIMISTIC)
