@@ -1,7 +1,7 @@
 package it.redhat.demo.cache;
 
-import it.redhat.demo.rest.AlfaRestService;
-import it.redhat.demo.rest.BetaRestService;
+import it.redhat.demo.rest.impl.ReplicatedRestService;
+import it.redhat.demo.rest.impl.TransactionalRestService;
 import org.infinispan.configuration.cache.*;
 import org.infinispan.configuration.global.GlobalConfiguration;
 import org.infinispan.configuration.global.GlobalConfigurationBuilder;
@@ -49,35 +49,34 @@ public class CacheManagerProducer {
                     .enable()
                 .build();
 
-        InvocationBatchingConfigurationBuilder defaultBuilder = new ConfigurationBuilder()
-                .clustering()
-                    .cacheMode(CacheMode.REPL_ASYNC)
-                    .stateTransfer()
-                        .timeout(30000000)
-                        .fetchInMemoryState(true)
-                        .chunkSize(1048576)
-                        .awaitInitialTransfer(true)
-                .transaction()
-                    .transactionMode(TransactionMode.TRANSACTIONAL)
-                    .lockingMode(LockingMode.OPTIMISTIC)
-                    .transactionManagerLookup(new GenericTransactionManagerLookup())
-                    .syncCommitPhase(true)
-                    .useSynchronization(false)
-                    .cacheStopTimeout(10000)
-                .locking()
-                    .isolationLevel(IsolationLevel.READ_COMMITTED)
-                    .concurrencyLevel(1000)
-                    .useLockStriping(false)
-                    .lockAcquisitionTimeout(600000l)
-                .invocationBatching()
-                    .enable(true);
+        StateTransferConfigurationBuilder replicated = new ConfigurationBuilder()
+            .clustering()
+                .cacheMode(CacheMode.REPL_ASYNC)
+            .stateTransfer()
+                .timeout(30000000)
+                    .fetchInMemoryState(true)
+                    .chunkSize(1048576)
+                    .awaitInitialTransfer(true);
 
-        Configuration alfaConfiguration = defaultBuilder.build();
-        Configuration betaConfiguration = defaultBuilder.build();
+        InvocationBatchingConfigurationBuilder transactional = replicated
+            .transaction()
+                .transactionMode(TransactionMode.TRANSACTIONAL)
+                .lockingMode(LockingMode.OPTIMISTIC)
+                .transactionManagerLookup(new GenericTransactionManagerLookup())
+                .syncCommitPhase(true)
+                .useSynchronization(false)
+                .cacheStopTimeout(10000)
+            .locking()
+                .isolationLevel(IsolationLevel.READ_COMMITTED)
+                .concurrencyLevel(1000)
+                .useLockStriping(false)
+                .lockAcquisitionTimeout(600000l)
+            .invocationBatching()
+                .enable(true);
 
-        cacheManager = new DefaultCacheManager(globalConfiguration, defaultBuilder.build());
-        cacheManager.defineConfiguration(AlfaRestService.CACHE_NAME, alfaConfiguration);
-        cacheManager.defineConfiguration(BetaRestService.CACHE_NAME, betaConfiguration);
+        cacheManager = new DefaultCacheManager(globalConfiguration);
+        cacheManager.defineConfiguration(ReplicatedRestService.CACHE_NAME, replicated.build());
+        cacheManager.defineConfiguration(TransactionalRestService.CACHE_NAME, transactional.build());
 
         cacheManager.start();
 
