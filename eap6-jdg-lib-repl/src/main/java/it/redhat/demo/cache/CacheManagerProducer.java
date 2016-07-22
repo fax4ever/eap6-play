@@ -1,7 +1,8 @@
 package it.redhat.demo.cache;
 
-import it.redhat.demo.rest.impl.ReplicatedRestService;
-import it.redhat.demo.rest.impl.TransactionalRestService;
+import it.redhat.demo.rest.impl.FanRestService;
+import it.redhat.demo.rest.impl.SmallRestService;
+import it.redhat.demo.rest.impl.LargeRestService;
 import org.infinispan.configuration.cache.*;
 import org.infinispan.configuration.global.GlobalConfiguration;
 import org.infinispan.configuration.global.GlobalConfigurationBuilder;
@@ -30,6 +31,10 @@ import javax.inject.Inject;
 @Startup
 public class CacheManagerProducer {
 
+    private static final String LOY_DATAGRID_MAXENTRIES = "loy.datagrid.maxentries";
+    private static final String LOY_DATAGRID_PASSIVESTORAGE = "loy.datagrid.passivestorage";
+    private static final String LOY_DATAGRID_PURGEONSTARTUP = "loy.datagrid.purgeonstartup";
+
     @Inject
     private Logger log;
 
@@ -38,50 +43,67 @@ public class CacheManagerProducer {
     @PostConstruct
     private void init() {
 
-        GlobalConfiguration globalConfiguration = new GlobalConfigurationBuilder()
-                .transport()
-                    .defaultTransport()
-                    .clusterName("eap6-jdg-lib-repl")
-                    .distributedSyncTimeout(600000l)
-                    .addProperty("configurationFile","jgroups.xml")
-                .globalJmxStatistics()
-                    .allowDuplicateDomains(true)
-                    .enable()
-                .build();
+        Integer maxentries = Integer.parseInt(System.getProperty(LOY_DATAGRID_MAXENTRIES));
+        String passivestorage = System.getProperty(LOY_DATAGRID_PASSIVESTORAGE);
+        boolean purgeonstartup = Boolean.parseBoolean(System.getProperty(LOY_DATAGRID_PURGEONSTARTUP));
 
-        Configuration replicated = new ConfigurationBuilder()
-            .clustering()
-                .cacheMode(CacheMode.REPL_ASYNC)
-            .stateTransfer()
-                .timeout(30000000)
-                .chunkSize(1048576)
-        .build();
+        GlobalConfiguration globalConfiguration = new GlobalConfigurationBuilder()
+            .transport()
+                .defaultTransport()
+                .clusterName("eap6-jdg-lib-repl")
+                .distributedSyncTimeout(600000l)
+                .addProperty("configurationFile","jgroups.xml")
+            .globalJmxStatistics()
+                .allowDuplicateDomains(true)
+                .enable()
+            .build();
 
         Configuration transactional = new ConfigurationBuilder()
-            .clustering()
-                .cacheMode(CacheMode.REPL_ASYNC)
-            .stateTransfer()
-                .timeout(30000000)
-                .chunkSize(1048576)
             .transaction()
                 .transactionMode(TransactionMode.TRANSACTIONAL)
                 .lockingMode(LockingMode.OPTIMISTIC)
                 .transactionManagerLookup(new GenericTransactionManagerLookup())
                 .syncCommitPhase(true)
                 .useSynchronization(false)
-                .cacheStopTimeout(10000)
             .locking()
                 .isolationLevel(IsolationLevel.READ_COMMITTED)
                 .concurrencyLevel(1000)
                 .useLockStriping(false)
-                .lockAcquisitionTimeout(600000l)
             .invocationBatching()
                 .enable(true)
         .build();
 
-        cacheManager = new DefaultCacheManager(globalConfiguration);
-        cacheManager.defineConfiguration(ReplicatedRestService.CACHE_NAME, replicated);
-        cacheManager.defineConfiguration(TransactionalRestService.CACHE_NAME, transactional);
+        Configuration small = new ConfigurationBuilder()
+            .read(transactional)
+            .clustering()
+                .cacheMode(CacheMode.REPL_ASYNC)
+                .stateTransfer()
+                    .chunkSize(16384)
+        .build();
+
+        Configuration large = new ConfigurationBuilder()
+            .read(transactional)
+            .clustering()
+                .cacheMode(CacheMode.DIST_ASYNC)
+                .hash()
+                    .numOwners(2)
+                .stateTransfer()
+                    .chunkSize(16384)
+            .persistence()
+                .passivation(true)
+                .addSingleFileStore()
+                .location(passivestorage)
+                .preload(false)
+                .purgeOnStartup(purgeonstartup)
+                .shared(false)
+                .singleton()
+            .eviction()
+                .maxEntries(maxentries)
+        .build();
+
+        cacheManager = new DefaultCacheManager(globalConfiguration, small);
+        cacheManager.defineConfiguration(LargeRestService.CACHE_NAME, large);
+        cacheManager.defineConfiguration(FanRestService.CACHE_NAME, large);
 
         cacheManager.start();
 

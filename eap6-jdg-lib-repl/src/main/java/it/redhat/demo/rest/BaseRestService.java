@@ -40,6 +40,14 @@ public abstract class BaseRestService {
 
     }
 
+    @Path("work")
+    @DELETE
+    public void work() {
+
+        cache.clear();
+
+    }
+
     @Path("work/{max}")
     @POST
     public void work(@PathParam("max") Integer max) {

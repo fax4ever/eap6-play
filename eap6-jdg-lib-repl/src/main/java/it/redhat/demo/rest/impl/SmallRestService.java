@@ -15,10 +15,10 @@ import javax.ws.rs.*;
  *         on 19/07/16
  */
 @Stateless
-@Path(TransactionalRestService.CACHE_NAME)
-public class TransactionalRestService extends BaseRestService {
+@Path(SmallRestService.CACHE_NAME)
+public class SmallRestService extends BaseRestService {
 
-    public static final String CACHE_NAME = "transactional";
+    public static final String CACHE_NAME = "small";
 
     @Inject
     private Logger log;

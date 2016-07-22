@@ -15,10 +15,10 @@ import javax.ws.rs.*;
  *         on 19/07/16
  */
 @Stateless
-@Path(ReplicatedRestService.CACHE_NAME)
-public class ReplicatedRestService extends BaseRestService {
+@Path(LargeRestService.CACHE_NAME)
+public class LargeRestService extends BaseRestService {
 
-    public static final String CACHE_NAME = "replicated";
+    public static final String CACHE_NAME = "large";
 
     @Inject
     private Logger log;
