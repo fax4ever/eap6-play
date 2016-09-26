@@ -18,6 +18,27 @@
             <artifactId>jboss-ejb-client</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>it.redhat.demo</groupId>
+            <artifactId>eap6-ejb-remote</artifactId>
+            <version>${project.version}</version>
+            <type>ejb-client</type>
+        </dependency>
+
+        <!-- core -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss EAP 6 -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.ws.rs</groupId>
+            <artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>
