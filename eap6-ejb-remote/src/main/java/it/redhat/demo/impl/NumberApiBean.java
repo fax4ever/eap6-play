@@ -1,6 +1,7 @@
 package it.redhat.demo.impl;
 
 import it.redhat.demo.NumberApi;
+import org.jboss.ejb3.annotation.Clustered;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -12,6 +13,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 @Remote(NumberApi.class)
+@Clustered
 public class NumberApiBean implements NumberApi {
 
     @Override
