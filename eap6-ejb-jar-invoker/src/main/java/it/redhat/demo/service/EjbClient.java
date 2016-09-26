@@ -5,7 +5,12 @@ import it.redhat.demo.NumberApi;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * @author Fabio Massimo Ercoli
@@ -17,7 +22,34 @@ public class EjbClient {
     public static void main(String[] args) throws Exception {
 
         NumberApi numberApi = lookup();
-        System.out.println("The number is: " + numberApi.getNext());
+        ArrayList<Future<Integer>> futures = new ArrayList<>();
+
+        Callable<Integer> task = () -> {
+            return numberApi.getNext();
+        };
+
+        ExecutorService executor = Executors.newFixedThreadPool(1000);
+
+        for (int i=0; i<1000; i++) {
+            futures.add(executor.submit(task));
+        }
+
+        for (int i=0; i<1000; i++) {
+
+            try {
+
+                Integer integer = futures.get(i).get();
+                System.out.println("Eccoci :: " + i + " :: " + integer);
+
+            } catch (Exception ex) {
+
+                System.out.println("Eccoci :: " + ex.getMessage());
+
+            }
+
+        }
+
+        executor.shutdown();
 
     }
 

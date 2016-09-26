@@ -25,6 +25,13 @@
             <version>${jboss.ejb3.ext.api}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- core -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
