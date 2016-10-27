@@ -23,7 +23,7 @@ public class JDBCRepo {
     private DataSource myDB;
 
     @Asynchronous
-    public void executeQuery(Integer task) {
+    public void executeQuery(Integer task, Integer star) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -34,7 +34,9 @@ public class JDBCRepo {
             stmt = conn.prepareStatement("select 1");
             rs = stmt.executeQuery();
 
-            log.info("completed {}", task);
+            if (task % star == 0) {
+                log.info("completed {}", task);
+            }
 
         } catch (Exception e) {
 

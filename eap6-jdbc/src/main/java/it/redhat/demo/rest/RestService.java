@@ -37,9 +37,22 @@ public class RestService {
             times = 10;
         }
 
+        if (times == 0) {
+            return 0;
+        }
+
+        int star = times / 10;
+        int rest = times % 10;
+        if (rest > 0) {
+            star++;
+        }
+
         for (int i=0; i<times; i++) {
-            repo.executeQuery(i);
-            log.info("sended {}", i);
+            repo.executeQuery(i, star);
+
+            if (i % star == 0) {
+                log.info("sended {}", i);
+            }
         }
 
         return times;
