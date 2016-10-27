@@ -1,8 +1,10 @@
 package it.redhat.demo.repo;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.annotation.Resource;
-import javax.ejb.LocalBean;
-import javax.ejb.Stateful;
+import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -12,15 +14,16 @@ import java.sql.ResultSet;
 /**
  * Created by fabio on 27/10/16.
  */
-@Stateful
+@Stateless
 public class JDBCRepo {
+
+    private static Logger log = LoggerFactory.getLogger(JDBCRepo.class);
 
     @Resource(name = "java:jboss/datasources/ExampleDS")
     private DataSource myDB;
 
-    private int counter = 0;
-
-    public Integer executeQuery() {
+    @Asynchronous
+    public void executeQuery(Integer task) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -31,7 +34,7 @@ public class JDBCRepo {
             stmt = conn.prepareStatement("select 1");
             rs = stmt.executeQuery();
 
-            return ++counter;
+            log.info("completed {}", task);
 
         } catch (Exception e) {
 
@@ -56,7 +59,6 @@ public class JDBCRepo {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-
 
         }
 
