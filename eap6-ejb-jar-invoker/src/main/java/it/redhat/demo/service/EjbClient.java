@@ -19,6 +19,8 @@ import java.util.concurrent.Future;
  */
 public class EjbClient {
 
+    public static final int INT = 10;
+
     public static void main(String[] args) throws Exception {
 
         NumberApi numberApi = lookup();
@@ -28,13 +30,13 @@ public class EjbClient {
             return numberApi.getNext();
         };
 
-        ExecutorService executor = Executors.newFixedThreadPool(1000);
+        ExecutorService executor = Executors.newFixedThreadPool(INT);
 
-        for (int i=0; i<1000; i++) {
+        for (int i = 0; i< INT; i++) {
             futures.add(executor.submit(task));
         }
 
-        for (int i=0; i<1000; i++) {
+        for (int i = 0; i< INT; i++) {
 
             try {
 
