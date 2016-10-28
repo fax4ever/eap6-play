@@ -16,13 +16,12 @@ import java.util.concurrent.*;
  */
 public class EjbClient {
 
-    public static final int INVOCATION_NUMBER = 100;
-    public static final int POOL_SIZE = 10;
+    public static final int INVOCATION_NUMBER = 1000;
+    public static final int POOL_SIZE = 50;
 
     public static void main(String[] args) throws Exception {
 
         NumberApi numberApi = lookup();
-        long startTime = System.nanoTime();
 
         ArrayList<Future<Integer>> futures = new ArrayList<>();
 
@@ -32,6 +31,7 @@ public class EjbClient {
 
         ExecutorService executor = Executors.newFixedThreadPool(POOL_SIZE);
 
+        long startTime = System.nanoTime();
         for (int i = 0; i< INVOCATION_NUMBER; i++) {
             futures.add(executor.submit(task));
         }
