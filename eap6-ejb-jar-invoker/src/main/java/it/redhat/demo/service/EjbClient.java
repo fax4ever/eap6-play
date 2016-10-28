@@ -19,7 +19,7 @@ import java.util.concurrent.Future;
  */
 public class EjbClient {
 
-    public static final int INT = 10;
+    public static final int INT = 1000;
 
     public static void main(String[] args) throws Exception {
 
