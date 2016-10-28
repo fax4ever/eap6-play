@@ -14,13 +14,15 @@ public class AllClusterNodeSelector implements ClusterNodeSelector {
 
         String message = "INSTANCE " + this + " : cluster:" + clusterName + " connected:" + Arrays.deepToString(connectedNodes) + " available:" + Arrays.deepToString(availableNodes);
 
-        System.out.println(message);
-
         if (availableNodes.length == 1) {
             return availableNodes[0];
         }
         final Random random = new Random();
         final int randomSelection = random.nextInt(availableNodes.length);
+
+        System.out.println(message + " :: CHOSEN :: " + randomSelection);
+
         return availableNodes[randomSelection];
+
     }
 }
