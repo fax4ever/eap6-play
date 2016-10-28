@@ -16,12 +16,14 @@ import java.util.concurrent.*;
  */
 public class EjbClient {
 
-    public static final int INVOCATION_NUMBER = 1000;
+    public static final int INVOCATION_NUMBER = 100;
     public static final int POOL_SIZE = 10;
 
     public static void main(String[] args) throws Exception {
 
         NumberApi numberApi = lookup();
+        long startTime = System.nanoTime();
+
         ArrayList<Future<Integer>> futures = new ArrayList<>();
 
         Callable<Integer> task = () -> {
@@ -50,6 +52,11 @@ public class EjbClient {
         }
 
         executor.shutdown();
+
+        long endTime = System.nanoTime();
+
+        long seconds = (endTime - startTime) / 1000000000;
+        System.out.println( "Duration :: " + seconds + " seconds");
 
     }
 
