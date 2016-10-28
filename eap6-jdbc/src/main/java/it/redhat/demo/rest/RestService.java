@@ -1,6 +1,7 @@
 package it.redhat.demo.rest;
 
 import it.redhat.demo.repo.JDBCRepo;
+import it.redhat.demo.util.Counter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,25 +34,13 @@ public class RestService {
     @GET
     public Integer query(@QueryParam("times") Integer times) {
 
-        if (times == null) {
-            times = 10;
-        }
+        for (Counter counter = new Counter(times); !counter.isComplete(); counter.increment()) {
+            repo.executeQuery(counter);
 
-        if (times == 0) {
-            return 0;
-        }
+            if (counter.logThisTime()) {
+                log.info("sended {}", counter.getCounter());
 
-        int star = times / 10;
-        int rest = times % 10;
-        if (rest > 0) {
-            star++;
-        }
-
-        for (int i=0; i<times; i++) {
-            repo.executeQuery(i, star);
-
-            if (i % star == 0) {
-                log.info("sended {}", i);
+                counter.increment();
             }
         }
 

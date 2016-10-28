@@ -1,5 +1,6 @@
 package it.redhat.demo.repo;
 
+import it.redhat.demo.util.Counter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +24,7 @@ public class JDBCRepo {
     private DataSource myDB;
 
     @Asynchronous
-    public void executeQuery(Integer task, Integer star) {
+    public void executeQuery(Counter counter) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -34,8 +35,8 @@ public class JDBCRepo {
             stmt = conn.prepareStatement("select 1");
             rs = stmt.executeQuery();
 
-            if (task % star == 0) {
-                log.info("completed {}", task);
+            if (counter.logThisTime()) {
+                log.info("completed {}", counter.getCounter());
             }
 
         } catch (Exception e) {
