@@ -7,10 +7,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 /**
  * @author Fabio Massimo Ercoli
@@ -19,7 +16,8 @@ import java.util.concurrent.Future;
  */
 public class EjbClient {
 
-    public static final int INT = 1000;
+    public static final int INVOCATION_NUMBER = 1000;
+    public static final int POOL_SIZE = 10;
 
     public static void main(String[] args) throws Exception {
 
@@ -30,22 +28,22 @@ public class EjbClient {
             return numberApi.getNext();
         };
 
-        ExecutorService executor = Executors.newFixedThreadPool(INT);
+        ExecutorService executor = Executors.newFixedThreadPool(POOL_SIZE);
 
-        for (int i = 0; i< INT; i++) {
+        for (int i = 0; i< INVOCATION_NUMBER; i++) {
             futures.add(executor.submit(task));
         }
 
-        for (int i = 0; i< INT; i++) {
+        for (int i = 0; i< INVOCATION_NUMBER; i++) {
 
             try {
 
-                Integer integer = futures.get(i).get();
-                System.out.println("Eccoci :: " + i + " :: " + integer);
+                Integer integer = futures.get(i).get(100, TimeUnit.SECONDS);
+                System.out.println("Riceve integer value :: " + i + " :: " + integer);
 
             } catch (Exception ex) {
 
-                System.out.println("Eccoci :: " + ex.getMessage());
+                System.out.println("Exception :: " + ex.getMessage());
 
             }
 
