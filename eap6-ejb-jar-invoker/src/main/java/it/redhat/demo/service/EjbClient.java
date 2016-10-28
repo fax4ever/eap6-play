@@ -16,7 +16,7 @@ import java.util.concurrent.*;
  */
 public class EjbClient {
 
-    public static final int INVOCATION_NUMBER = 1000;
+    public static final int INVOCATION_NUMBER = 200;
     public static final int POOL_SIZE = 10;
 
     public static void main(String[] args) throws Exception {

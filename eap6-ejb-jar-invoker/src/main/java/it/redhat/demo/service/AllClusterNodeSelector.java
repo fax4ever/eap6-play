@@ -1,28 +1,35 @@
 package it.redhat.demo.service;
 
-import org.jboss.ejb.client.ClusterNodeSelector;
-
 import java.util.Arrays;
 import java.util.Random;
+import java.util.logging.Logger;
+import org.jboss.ejb.client.ClusterNodeSelector;
 
-/**
- * Created by fabio on 26/09/16.
- */
 public class AllClusterNodeSelector implements ClusterNodeSelector {
-    @Override
-    public String selectNode(final String clusterName, final String[] connectedNodes, final String[] availableNodes) {
+	
+	private static final Logger LOGGER = Logger.getLogger(AllClusterNodeSelector.class.getName());
 
-        String message = "INSTANCE " + this + " : cluster:" + clusterName + " connected:" + Arrays.deepToString(connectedNodes) + " available:" + Arrays.deepToString(availableNodes);
+	public AllClusterNodeSelector() {
+		LOGGER.info(this.toString());
+	}
 
-        if (availableNodes.length == 1) {
-            return availableNodes[0];
-        }
-        final Random random = new Random();
-        final int randomSelection = random.nextInt(availableNodes.length);
+	@Override
+	public String selectNode(String clusterName, String[] connectedNodes, String[] availableNodes) {
 
-        System.out.println(message + " :: CHOSEN :: " + randomSelection);
+		if (availableNodes.length == 1) {
+			return availableNodes[0];
+		}
 
-        return availableNodes[randomSelection];
+		final Random random = new Random();
+		final int randomSelection = random.nextInt(availableNodes.length);
+		LOGGER.info(
+				"INSTANCE "+ this + 
+				" : cluster:"+ clusterName +
+				" connected:"+ Arrays.deepToString(connectedNodes) +
+				" available:"+ Arrays.deepToString(availableNodes) +
+				" selected: "+ randomSelection
+			);
+		return availableNodes[randomSelection];	
+	}
 
-    }
 }
