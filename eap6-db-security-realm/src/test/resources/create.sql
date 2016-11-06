@@ -24,4 +24,4 @@ INSERT INTO `fabio`.`roles` (`username`, `rolename`) VALUES ('fabio', 'user');
 INSERT INTO `fabio`.`roles` (`username`, `rolename`) VALUES ('chiara', 'manager');
 
 SELECT password FROM fabio.users where username='chiara';
-SELECT rolename FROM fabio.roles where username='chiara';
+SELECT rolename, 'Roles' FROM fabio.roles where username='chiara';
