@@ -25,6 +25,7 @@
         <module>eap6-jdg-lib-repl</module>
         <module>eap6-ejb-war-invoker</module>
         <module>eap6-jdbc</module>
+        <module>eap6-db-security-realm</module>
     </modules>
 
     <properties>
