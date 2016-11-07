@@ -1,5 +1,7 @@
 package it.redhat.demo.service;
 
+import java.util.logging.Logger;
+
 import javax.decorator.Decorator;
 import javax.decorator.Delegate;
 import javax.enterprise.inject.Any;
@@ -7,6 +9,9 @@ import javax.inject.Inject;
 
 @Decorator
 public abstract class BikeServiceDecorator implements BikeService {
+	
+	@Inject
+	private Logger log;
 
 	@Inject
 	@Delegate
@@ -15,14 +20,14 @@ public abstract class BikeServiceDecorator implements BikeService {
 
 	@Override
 	public void startService() {
-		// TODO Auto-generated method stub
-		
+		log.info("Decore");
+		bikeService.startService();
 	}
 
 	@Override
 	public void stopService() {
-		// TODO Auto-generated method stub
-		
+		log.info("Decore");
+		bikeService.stopService();
 	}
 	
 }

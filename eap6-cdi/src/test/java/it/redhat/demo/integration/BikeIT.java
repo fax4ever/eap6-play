@@ -5,7 +5,6 @@ import javax.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +19,7 @@ public class BikeIT {
 		
 		return ShrinkWrap.create(JavaArchive.class)
 			.addPackages(true, "it.redhat.demo")
-			.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+			.addAsManifestResource("META-INF/beans.xml", "beans.xml");
 		
 	}
 	
