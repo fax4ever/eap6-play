@@ -1,7 +1,5 @@
 package it.redhat.demo;
 
-import javax.ejb.Remote;
-
 /**
  * @author Fabio Massimo Ercoli
  *         fabio.ercoli@redhat.com
