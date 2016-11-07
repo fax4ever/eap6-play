@@ -11,9 +11,9 @@ import it.redhat.demo.event.EventContent;
 import it.redhat.demo.interceptor.Logged;
 import it.redhat.demo.qualifier.Bike;
 import it.redhat.demo.qualifier.Veichle;
+import it.redhat.demo.service.BikeService;
 
-@ConversationScoped
-@Logged
+@Controller
 public class RentBikeController implements Serializable {
 
 	@Inject
@@ -26,6 +26,9 @@ public class RentBikeController implements Serializable {
 	@Inject
 	@Bike
 	private Event<EventContent> event;
+	
+	@Inject
+	private BikeService service;
 
 	public void go() {
 		if (!conversation.isTransient()) {
@@ -37,6 +40,8 @@ public class RentBikeController implements Serializable {
 		EventContent eventContent = new EventContent();
 		eventContent.setContent("start conversation");
 		event.fire(eventContent);
+		
+		service.startService();
 	}
 
 	public void stop() {
@@ -45,6 +50,8 @@ public class RentBikeController implements Serializable {
 		EventContent eventContent = new EventContent();
 		eventContent.setContent("end conversation");
 		event.fire(eventContent);
+		
+		service.stopService();
 	}
 
 }
