@@ -8,10 +8,12 @@ import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
 import it.redhat.demo.event.EventContent;
+import it.redhat.demo.interceptor.Logged;
 import it.redhat.demo.qualifier.Bike;
 import it.redhat.demo.qualifier.Veichle;
 
 @ConversationScoped
+@Logged
 public class RentBikeController implements Serializable {
 
 	@Inject
