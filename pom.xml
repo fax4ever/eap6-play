@@ -27,6 +27,9 @@
         <module>eap6-jdbc</module>
         <module>eap6-db-security-realm</module>
         <module>eap6-jpa</module>
+        <module>eap6-cdi</module>
+        <module>eap6-ejb</module>
+        <module>eap6-jsf</module>
     </modules>
 
     <properties>

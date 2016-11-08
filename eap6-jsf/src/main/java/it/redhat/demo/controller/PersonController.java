@@ -19,4 +19,14 @@ public class PersonController {
 		log.info(person.toString());
 	}
 
+	public String page(Person person) {
+		log.info(person.toString());
+		return "page";
+	}
+
+	public String person(Person person) {
+		log.info(person.toString());
+		return "person";
+	}
+
 }
