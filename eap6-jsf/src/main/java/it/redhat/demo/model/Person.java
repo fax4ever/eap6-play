@@ -7,6 +7,7 @@ public class Person implements Serializable {
 	private String name;
 	private String surname;
 	private String color;
+	private Boolean ok;
 
 	public Person() {
 	}
@@ -40,12 +41,21 @@ public class Person implements Serializable {
 		this.color = color;
 	}
 
+	public Boolean getOk() {
+		return ok;
+	}
+
+	public void setOk(Boolean ok) {
+		this.ok = ok;
+	}
+
 	@Override
 	public String toString() {
 		return "Person{" +
 				"name='" + name + '\'' +
 				", surname='" + surname + '\'' +
 				", color='" + color + '\'' +
+				", ok=" + ok +
 				'}';
 	}
 
