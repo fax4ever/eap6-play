@@ -6,8 +6,8 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>All</web-resource-name>
-            <url-pattern>/*</url-pattern>
+            <web-resource-name>Secured</web-resource-name>
+            <url-pattern>/secured/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>*</role-name>
