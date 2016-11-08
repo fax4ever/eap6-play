@@ -3,13 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-    <title>Eap7 Webflow JSF</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <h:outputStylesheet library="style" name="bootstrap.min.css"  />
-</h:head>
-<h:body>
-    <ui:composition>
+
+<ui:composition>
+    <h:head>
+        <title>Eap7 Webflow JSF</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <h:outputStylesheet library="style" name="bootstrap.min.css"/>
+    </h:head>
+    <h:body>
         <div id="container">
             <div class="navbar navbar-inverse">
                 <div class="container">
@@ -26,17 +27,9 @@
 
             <hr/>
             <div class="container">
-                <p>Learn more about Red Hat JBoss Enterprise Application Platform.</p>
-                <ul>
-                    <li>
-                        <a href="https://access.redhat.com/documentation/en/red-hat-jboss-enterprise-application-platform/">Documentation</a>
-                    </li>
-                    <li>
-                        <a href="http://www.redhat.com/en/technologies/jboss-middleware/application-platform">Product Information</a>
-                    </li>
-                </ul>
+                <ui:include src="footer.xhtml"/>
             </div>
         </div>
-    </ui:composition>
-</h:body>
+    </h:body>
+</ui:composition>
 </html>
