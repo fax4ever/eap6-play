@@ -12,7 +12,7 @@ import it.redhat.demo.model.Person;
 
 @Singleton
 public class PersonFactory {
-	
+
 	@Produces
 	@Named
 	@SessionScoped

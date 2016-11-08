@@ -6,6 +6,7 @@ public class Person implements Serializable {
 
 	private String name;
 	private String surname;
+	private String color;
 
 	public Person() {
 	}
@@ -31,9 +32,21 @@ public class Person implements Serializable {
 		this.surname = surname;
 	}
 
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", surname=" + surname + "]";
+		return "Person{" +
+				"name='" + name + '\'' +
+				", surname='" + surname + '\'' +
+				", color='" + color + '\'' +
+				'}';
 	}
 
 }
