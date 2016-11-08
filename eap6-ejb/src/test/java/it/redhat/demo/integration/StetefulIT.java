@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 import it.redhat.demo.stateful.RememberService;
 
 @RunWith(Arquillian.class)
-public class StetefulIT {
+public class StetefulIT extends BaseIT {
 	
 	@Deployment
 	public static JavaArchive jar() {

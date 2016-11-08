@@ -6,19 +6,25 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import it.redhat.demo.stateless.HelloService;
+import it.redhat.demo.singleton.OneSerivce;
 
 @RunWith(Arquillian.class)
-public class StatelessIT extends BaseIT {
+public class SingletonIT extends BaseIT {
 	
 	@Inject
-	private HelloService service;
-	
+	private OneSerivce one;
+
 	@Test
 	public void go() {
 		
-		System.out.println(service.createHelloMessage("Fabio"));
+		one.increment();
+		one.increment();
+		one.increment();
+		
+		Integer value = one.getValue();
+		System.out.println(value + "");
+		
 		
 	}
-
+	
 }
