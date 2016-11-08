@@ -30,6 +30,7 @@
         <module>eap6-cdi</module>
         <module>eap6-ejb</module>
         <module>eap6-jsf</module>
+        <module>eap6-ha</module>
     </modules>
 
     <properties>
