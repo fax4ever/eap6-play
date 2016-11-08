@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Eap6 - Jsf</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputLabel value="Name" for="name" />
+		<h:inputText value="#{person.name}" id="name" />
+		<h:outputLabel value="Surname" for="surname" />
+		<h:inputText value="#{person.surname}" id="surname" />
+		<h:commandButton value="Change" action="#{personController.log(person)}" />
+	</h:form>
+	<h:outputText value="#{person.name}" />
+	<br />
+	<h:outputText value="#{person.surname}" />
+</h:body>
+
+</html>
