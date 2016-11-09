@@ -17,27 +17,28 @@
         <div class="form-group row">
             <h:outputLabel value="Name" for="name" styleClass="col-xs-2" />
             <div class="col-xs-10">
-                <h:inputText value="#{person.name}" styleClass="form-control" id="name"/>
+                <h:inputText value="#{person.name}" id="name"/>
             </div>
         </div>
         <div class="form-group row">
             <h:outputLabel value="Surname" for="surname" styleClass="col-xs-2" />
             <div class="col-xs-10">
-                <h:inputText value="#{person.surname}" styleClass="form-control" id="surname"/>
+                <h:inputText value="#{person.surname}" id="surname"/>
             </div>
         </div>
         <div class="form-group row">
             <h:outputLabel value="Color" for="color" styleClass="col-xs-2" />
             <div class="col-xs-10">
-                <h:selectOneRadio id="color" value="#{person.color}" styleClass="form-control">
-                    <f:selectItem itemLabel="Red" itemValue="Red"/>
+                <h:selectOneRadio id="color" value="#{person.color}">
+                    <f:selectItem itemLabel="Red" itemValue="Red" />
+                    <f:selectItem itemLabel="Blue" itemValue="Blue" />
                 </h:selectOneRadio>
             </div>
         </div>
         <div class="form-group row">
             <h:outputLabel value="Ok" for="ok" styleClass="col-xs-2" />
             <div class="col-xs-10">
-                <h:selectBooleanCheckbox id="ok" value="#{person.ok}" styleClass="form-control"/>
+                <h:selectBooleanCheckbox id="ok" value="#{person.ok}" />
             </div>
         </div>
     </ui:define>
