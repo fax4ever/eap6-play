@@ -4,13 +4,26 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:composition>
-        #{person.name}
-        <br/>
-        #{person.surname}
-        <br/>
-        #{person.color}
-        <br/>
-        #{person.ok}
+        <table class="table table-condensed">
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>#{person.name}</td>
+                </tr>
+                <tr>
+                    <td>Surname</td>
+                    <td>#{person.surname}</td>
+                </tr>
+                <tr>
+                    <td>The color is</td>
+                    <td>#{person.color}</td>
+                </tr>
+                <tr>
+                    <td>It's ok?</td>
+                    <td>#{person.ok}</td>
+                </tr>
+            </tbody>
+        </table>
     </ui:composition>
 
 </html>
