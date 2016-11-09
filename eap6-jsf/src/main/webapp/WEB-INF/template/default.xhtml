@@ -13,15 +13,28 @@
     <h:body>
         <div id="container">
             <div class="navbar navbar-inverse">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="person.jsf">Eap6 JSF</a>
-                    </div>
-                </div>
+                <ui:include src="header.xhtml"/>
             </div>
+
             <div class="container">
-                <ui:insert name="content">
-                    [Template content will be inserted here]
+                <ui:insert name="title">
+                </ui:insert>
+            </div>
+
+            <h:form styleClass="">
+                <div class="container">
+                    <ui:insert name="actions">
+                    </ui:insert>
+                </div>
+
+                <div class="container">
+                    <ui:insert name="content">
+                    </ui:insert>
+                </div>
+            </h:form>
+
+            <div class="container">
+                <ui:insert name="preview">
                 </ui:insert>
             </div>
 

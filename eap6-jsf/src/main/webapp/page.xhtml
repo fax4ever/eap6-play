@@ -2,38 +2,46 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html">
-    <ui:define name="content">
-        <h3>Page</h3>
-        <h:form styleClass="">
-            <div class="form-group">
-                <h:outputLabel value="Name" for="name"/>
-                <h:inputText value="#{person.name}" styleClass="form-control" id="name"/>
-            </div>
-            <div class="form-group">
-                <h:outputLabel value="Surname" for="surname"/>
-                <h:inputText value="#{person.surname}" styleClass="form-control" id="surname"/>
-            </div>
-            <div class="form-group">
-                <h:outputLabel value="Color" for="color"/>
-                <h:selectOneRadio id="color" value="#{person.color}" styleClass="form-control">
-                    <f:selectItem itemLabel="Red" itemValue="Red"/>
-                </h:selectOneRadio>
-            </div>
-            <div class="form-group">
-                <h:outputLabel value="Ok" for="ok"/>
-                <h:selectBooleanCheckbox id="ok" value="#{person.ok}" styleClass="form-control"/>
-            </div>
 
-            <h:commandButton value="Change" action="#{personController.log(person)}"/>
-            <h:commandButton value="Person (log)" action="#{personController.person(person)}"/>
-            <h:commandButton value="Person (direct)" action="person"/>
-        </h:form>
-        <h:outputText value="#{person.name}"/>
+    <ui:define name="title">
+        <h3>Page</h3>
+    </ui:define>
+
+    <ui:define name="actions">
+        <h:commandButton value="Change" action="#{personController.log(person)}"/>
+        <h:commandButton value="Person (log)" action="#{personController.person(person)}"/>
+        <h:commandButton value="Person (direct)" action="person"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="form-group">
+            <h:outputLabel value="Name" for="name"/>
+            <h:inputText value="#{person.name}" styleClass="form-control" id="name"/>
+        </div>
+        <div class="form-group">
+            <h:outputLabel value="Surname" for="surname"/>
+            <h:inputText value="#{person.surname}" styleClass="form-control" id="surname"/>
+        </div>
+        <div class="form-group">
+            <h:outputLabel value="Color" for="color"/>
+            <h:selectOneRadio id="color" value="#{person.color}" styleClass="form-control">
+                <f:selectItem itemLabel="Red" itemValue="Red"/>
+            </h:selectOneRadio>
+        </div>
+        <div class="form-group">
+            <h:outputLabel value="Ok" for="ok"/>
+            <h:selectBooleanCheckbox id="ok" value="#{person.ok}" styleClass="form-control"/>
+        </div>
+    </ui:define>
+
+    <ui:define name="preview">
+        #{person.name}
         <br/>
-        <h:outputText value="#{person.surname}"/>
+        #{person.surname}
         <br/>
         #{person.color}
         <br/>
         #{person.ok}
     </ui:define>
+
 </ui:composition>
