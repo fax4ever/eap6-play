@@ -3,13 +3,13 @@
 				xmlns:h="http://java.sun.com/jsf/html">
 
 	<ui:define name="title">
-		<h3>Person</h3>
+		Person
 	</ui:define>
 
 	<ui:define name="actions">
-		<h:commandButton value="Change" action="#{personController.log(person)}" />
-		<h:commandButton value="Page (log)" action="#{personController.page(person)}" />
-		<h:commandButton value="Page (direct)" action="page" />
+		<h:commandButton styleClass="btn btn-danger" value="Change" action="#{personController.log(person)}" />
+		<h:commandButton styleClass="btn btn-danger" value="Page (log)" action="#{personController.page(person)}" />
+		<h:commandButton styleClass="btn btn-danger" value="Page (direct)" action="page" />
 	</ui:define>
 
 	<ui:define name="content">
