@@ -16,27 +16,31 @@
                 <ui:include src="header.xhtml"/>
             </div>
 
-            <div class="container">
-                <ui:insert name="title">
-                </ui:insert>
-            </div>
+            <h:form>
 
-            <h:form styleClass="">
                 <div class="container">
-                    <ui:insert name="actions">
-                    </ui:insert>
+                    <div class="col-md-2">
+                        <ui:insert name="title">
+                        </ui:insert>
+                    </div>
+                    <div class="col-md-10">
+                        <ui:insert name="actions">
+                        </ui:insert>
+                    </div>
                 </div>
 
                 <div class="container">
-                    <ui:insert name="content">
-                    </ui:insert>
+                    <div class="col-md-2">
+                        <ui:insert name="preview">
+                        </ui:insert>
+                    </div>
+                    <div class="col-md-10">
+                        <ui:insert name="content">
+                        </ui:insert>
+                    </div>
                 </div>
+
             </h:form>
-
-            <div class="container">
-                <ui:insert name="preview">
-                </ui:insert>
-            </div>
 
             <hr/>
             <div class="container">
