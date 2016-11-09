@@ -9,13 +9,14 @@
         <composite:interface>
             <composite:attribute name="prompt" required="true" />
             <composite:attribute name="value" required="true" />
+            <composite:attribute name="labelId" required="true" />
         </composite:interface>
 
         <composite:implementation>
             <div class="form-group row">
-                <h:outputLabel value="#{cc.attrs.prompt}" styleClass="col-xs-2" />
+                <h:outputLabel value="#{cc.attrs.prompt}" styleClass="col-xs-2" for="#{cc.attrs.labelId}" />
                 <div class="col-xs-10">
-                    <h:inputText value="#{cc.attrs.value}" />
+                    <h:inputText value="#{cc.attrs.value}" id="#{cc.attrs.labelId}" />
                 </div>
             </div>
         </composite:implementation>
