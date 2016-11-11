@@ -8,6 +8,7 @@ public class Person implements Serializable {
 	private String surname;
 	private String color;
 	private Boolean ok;
+	private Integer age;
 
 	public Person() {
 	}
@@ -49,14 +50,11 @@ public class Person implements Serializable {
 		this.ok = ok;
 	}
 
-	@Override
-	public String toString() {
-		return "Person{" +
-				"name='" + name + '\'' +
-				", surname='" + surname + '\'' +
-				", color='" + color + '\'' +
-				", ok=" + ok +
-				'}';
+	public Integer getAge() {
+		return age;
 	}
 
+	public void setAge(Integer age) {
+		this.age = age;
+	}
 }

@@ -32,6 +32,12 @@
                 <h:selectBooleanCheckbox id="ok" value="#{person.ok}" />
             </div>
         </div>
+        <div class="form-group row">
+            <h:outputLabel value="Age" for="age" styleClass="col-xs-2" />
+            <div class="col-xs-10">
+                <h:inputText id="age" value="#{person.age}" converter="javax.faces.Integer" converterMessage="You must enter a number in this field" validator="#{personController.validateNonZero}" />
+            </div>
+        </div>
     </ui:define>
 
 </ui:composition>
