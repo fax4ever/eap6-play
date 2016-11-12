@@ -10,7 +10,7 @@
 
     <ui:define name="actions">
         <h:commandButton styleClass="btn btn-danger" value="Change" action="#{personController.log(person)}"/>
-        <h:commandButton styleClass="btn btn-danger" value="Person (log)" action="#{personController.person(person)}"/>
+        <h:commandButton styleClass="btn btn-danger" value="Person (log)" id="person" action="#{personController.person(person)}"/>
         <h:commandButton styleClass="btn btn-danger" value="Person (direct)" action="person"/>
     </ui:define>
 
