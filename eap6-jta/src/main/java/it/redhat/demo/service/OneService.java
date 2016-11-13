@@ -1,6 +1,12 @@
 package it.redhat.demo.service;
 
+import org.slf4j.Logger;
+
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
+import javax.inject.Inject;
+import javax.transaction.UserTransaction;
 import java.util.Random;
 
 /**
@@ -8,9 +14,19 @@ import java.util.Random;
  */
 
 @Stateless
+@TransactionManagement(TransactionManagementType.BEAN)
 public class OneService {
 
+    @Inject
+    private UserTransaction transaction;
+
+    @Inject
+    private Logger log;
+
     public Integer go() {
+
+        log.info("{}", transaction);
+
         return new Random().nextInt();
     }
 
