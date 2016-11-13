@@ -21,11 +21,16 @@
         <mc:form-group value="#{person.surname}" prompt="Surname" labelId="surname" action="#{personController.log(person)}" actionLabel="Change" />
         <div class="form-group row">
             <h:outputLabel value="Color" for="color" styleClass="col-xs-2" />
-            <div class="col-xs-10">
+            <div class="col-xs-8">
                 <h:selectOneRadio id="color" value="#{person.color}">
                     <f:selectItem itemLabel="Red" itemValue="Red" />
                     <f:selectItem itemLabel="Blue" itemValue="Blue" />
                 </h:selectOneRadio>
+            </div>
+            <div class="col-xs-2">
+                <h:commandButton styleClass="btn btn-danger" value="Change" action="#{personController.log(person)}">
+                    <f:ajax execute="color" render="colorPreview" immediate="true" />
+                </h:commandButton>
             </div>
         </div>
         <div class="form-group row">

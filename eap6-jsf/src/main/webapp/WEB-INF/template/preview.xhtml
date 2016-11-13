@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
 
     <ui:composition>
         <table class="table table-condensed">
@@ -16,7 +16,7 @@
                 </tr>
                 <tr>
                     <td>The color is</td>
-                    <td id="preview-color">#{person.color}</td>
+                    <td id="preview-color"><h:outputText id="colorPreview" value="#{person.color}" /></td>
                 </tr>
                 <tr>
                     <td>It's ok?</td>
