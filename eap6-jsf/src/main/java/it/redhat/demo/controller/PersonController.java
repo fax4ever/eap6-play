@@ -43,4 +43,10 @@ public class PersonController {
 
 	}
 
+	public void ajaxLog() {
+
+	    log.info("using ajax cool (old stuff)");
+
+    }
+
 }

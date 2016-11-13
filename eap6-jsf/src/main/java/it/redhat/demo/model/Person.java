@@ -57,4 +57,16 @@ public class Person implements Serializable {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+
+	@Override
+	public String toString() {
+		return "Person{" +
+				"name='" + name + '\'' +
+				", surname='" + surname + '\'' +
+				", color='" + color + '\'' +
+				", ok=" + ok +
+				", age=" + age +
+				'}';
+	}
+
 }

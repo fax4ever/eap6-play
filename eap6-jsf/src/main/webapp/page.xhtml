@@ -29,22 +29,24 @@
             </div>
             <div class="col-xs-2">
                 <h:commandButton styleClass="btn btn-danger" value="Change" action="#{personController.log(person)}">
-                    <f:ajax execute="color" render="colorPreview" immediate="true" />
+                    <f:ajax execute="color" render="colorPreview" immediate="true" listener="#{personController.ajaxLog}" />
                 </h:commandButton>
             </div>
         </div>
-        <div class="form-group row">
-            <h:outputLabel value="Ok" for="ok" styleClass="col-xs-2" />
-            <div class="col-xs-10">
-                <h:selectBooleanCheckbox id="ok" value="#{person.ok}" />
+        <f:ajax event="change" listener="#{personController.ajaxLog}" render="@all">
+            <div class="form-group row">
+                <h:outputLabel value="Ok" for="ok" styleClass="col-xs-2" />
+                <div class="col-xs-10">
+                    <h:selectBooleanCheckbox id="ok" value="#{person.ok}" />
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <h:outputLabel value="Age" for="age" styleClass="col-xs-2" />
-            <div class="col-xs-10">
-                <h:inputText id="age" value="#{person.age}" converter="javax.faces.Integer" converterMessage="You must enter a number in this field" validator="#{personController.validateNonZero}" />
+            <div class="form-group row">
+                <h:outputLabel value="Age" for="age" styleClass="col-xs-2" />
+                <div class="col-xs-10">
+                    <h:inputText id="age" value="#{person.age}" converter="javax.faces.Integer" converterMessage="You must enter a number in this field" validator="#{personController.validateNonZero}" />
+                </div>
             </div>
-        </div>
+        </f:ajax>
     </ui:define>
 
 </ui:composition>
