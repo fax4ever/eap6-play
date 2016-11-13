@@ -15,7 +15,7 @@ public class TwoService {
 
     public void rollbackOnApplicationException() throws MyException {
 
-        throw new MyException("daje");
+        throw new MyException("because rollback = true on application exception");
 
     }
 
