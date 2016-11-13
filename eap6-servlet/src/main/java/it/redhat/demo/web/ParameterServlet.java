@@ -11,17 +11,15 @@ import java.util.logging.Logger;
 /**
  * Created by fabio on 13/11/16.
  */
-@WebServlet("/one-http")
-public class OneHttpServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/params"}, displayName = "Many Params Servlet", loadOnStartup = 1)
+public class ParameterServlet extends HttpServlet {
 
-    private static Logger log = Logger.getLogger(OneHttpServlet.class.getName());
+    private static Logger log = Logger.getLogger(ParameterServlet.class.getName());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.info(req.getRequestURI());
         log.info(req.getMethod());
-
-        req.setAttribute("ciao", "ciao");
     }
 
 }
