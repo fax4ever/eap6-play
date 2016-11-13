@@ -50,6 +50,8 @@ public class OneServlet implements Servlet {
         pw.write("</body>");
         pw.write("</html>");
 
+        pw.close();
+
     }
 
     @Override
