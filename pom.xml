@@ -31,6 +31,7 @@
         <module>eap6-ejb</module>
         <module>eap6-jsf</module>
         <module>eap6-ha</module>
+        <module>eap6-servlet</module>
     </modules>
 
     <properties>
