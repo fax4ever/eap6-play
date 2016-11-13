@@ -2,6 +2,7 @@ package it.redhat.demo.web;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -26,6 +27,11 @@ public class OneServlet implements Servlet {
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
         log.info("Servlet One Calling");
+
+        HttpServletRequest httpReq = (HttpServletRequest) servletRequest;
+
+        log.info(httpReq.getRequestURI());
+        log.info(httpReq.getMethod());
     }
 
     @Override
