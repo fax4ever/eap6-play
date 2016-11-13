@@ -6,6 +6,8 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.inject.Inject;
+import javax.transaction.NotSupportedException;
+import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import java.util.Random;
 
@@ -26,8 +28,21 @@ public class OneService {
     public Integer go() {
 
         log.info("{}", transaction);
-
         return new Random().nextInt();
+
+    }
+
+    public void rollbackForSure() {
+
+        try {
+
+            transaction.begin();
+            transaction.setRollbackOnly();
+
+        } catch (SystemException | NotSupportedException e) {
+            log.error(e.getMessage(), e);
+        }
+
     }
 
 }
