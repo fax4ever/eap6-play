@@ -22,7 +22,7 @@ import java.net.URL;
  */
 
 @RunWith(Arquillian.class)
-public class WebTest {
+public class WebFunct {
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {

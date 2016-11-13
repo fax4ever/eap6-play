@@ -15,7 +15,9 @@
     </ui:define>
 
     <ui:define name="content">
-        <mc:form-group value="#{person.name}" prompt="Name" labelId="name" action="#{personController.log(person)}" actionLabel="Change" />
+        <mc:form-valid value="#{person.name}" prompt="Name">
+            <f:validateLength minimum="5" maximum="15" for="nameValue" />
+        </mc:form-valid>
         <mc:form-group value="#{person.surname}" prompt="Surname" labelId="surname" action="#{personController.log(person)}" actionLabel="Change" />
         <div class="form-group row">
             <h:outputLabel value="Color" for="color" styleClass="col-xs-2" />
