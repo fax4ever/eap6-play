@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import java.util.Random;
 
 /**
  * @author Fabio Massimo Ercoli
@@ -22,7 +23,8 @@ public class NumberApiBean implements NumberApi {
 
     @Override
     public int getNext() {
-        int value = (int) (Math.random() * 100);
+
+        int value = new Random(1000).nextInt();
 
         log.info("sending value :: {}", value);
 
