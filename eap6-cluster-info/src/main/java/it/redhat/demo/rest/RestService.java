@@ -10,6 +10,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Fabio Massimo Ercoli
@@ -37,8 +39,11 @@ public class RestService {
 
     @GET
     @Path("infinispan")
-    public Collection<Address> infinispan() {
-        return service.infinispan();
+    public Collection<String> infinispan() {
+        Collection<Address> infinispan = service.infinispan();
+
+        List<String> output = infinispan.stream().map(address -> address.toString()).collect(Collectors.toList());
+        return output;
     }
 
     @GET
