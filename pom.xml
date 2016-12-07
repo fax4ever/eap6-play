@@ -34,6 +34,7 @@
         <module>eap6-servlet</module>
         <module>eap6-jta</module>
         <module>eap6-client-cert</module>
+        <module>eap6-tour</module>
     </modules>
 
     <properties>
