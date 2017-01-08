@@ -19,6 +19,9 @@
 		<!-- JEE 6 EAP Implementation -->
 		<version.jboss.eap>6.4.12.GA</version.jboss.eap>
 
+		<!-- RichFaces Version -->
+		<version.richfaces>4.3.7.Final-redhat-1</version.richfaces>
+
 		<!-- SLFJ -->
 		<version.org.slf4j>1.7.2.redhat-3</version.org.slf4j>
 
@@ -70,6 +73,24 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.richfaces.core</groupId>
+			<artifactId>richfaces-core-impl</artifactId>
+			<version>${version.richfaces}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.richfaces.ui</groupId>
+			<artifactId>richfaces-components-ui</artifactId>
+			<version>${version.richfaces}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${version.org.slf4j}</version>
@@ -83,9 +104,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
 				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<archive>
+						<manifestEntries>
+							<mode>development</mode>
+						</manifestEntries>
+					</archive>
 				</configuration>
 			</plugin>
 		</plugins>
