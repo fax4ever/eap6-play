@@ -9,10 +9,16 @@ import javax.ws.rs.*;
  *         on 18/07/16
  */
 
-@Path("cache")
+@Path("")
 public class RestService {
 
     Logger log = LoggerFactory.getLogger(RestService.class);
+
+    @GET
+    public String ciao() {
+        log.info("ciao");
+        return "ciao";
+    }
 
     @POST
     public void start() {
