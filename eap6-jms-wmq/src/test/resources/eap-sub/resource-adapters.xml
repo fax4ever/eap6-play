@@ -1,8 +1,8 @@
 <subsystem xmlns="urn:jboss:domain:resource-adapters:1.1">
     <resource-adapters>
         <resource-adapter>
-            <archive>wmq.jmsra-VERSION.rar</archive>
-            <transaction-support>XATransaction</transaction-support>
+            <archive>wmq.jmsra.rar</archive>
+            <transaction-support>LocalTransaction</transaction-support>
             <connection-definitions>
                 <connection-definition class-name="com.ibm.mq.connector.outbound.ManagedConnectionFactoryImpl" jndi-name="java:/MQConnectionFactory" pool-name="MQ.CONNECTIONFACTORY.NAME">
                     <config-property name="hostName">MQ.HOST.NAME</config-property>
@@ -13,21 +13,12 @@
                     <security>
                         <security-domain>MySecurityDomain</security-domain>
                     </security>
-                    <recovery>
-                        <recover-credential>
-                            <security-domain>RECOVERY_SECURITY_DOMAIN</security-domain>
-                        </recover-credential>
-                    </recovery>
                 </connection-definition>
             </connection-definitions>
             <admin-objects>
-                <admin-object class-name="com.ibm.mq.connector.outbound.MQQueueProxy" jndi-name="java:jboss/MQ.QUEUE.NAME" pool-name="MQ.QUEUE.NAME">
+                <admin-object class-name="com.ibm.mq.connector.outbound.MQQueueProxy" jndi-name="java:/PlayQueue" pool-name="MQ.QUEUE.NAME">
                     <config-property name="baseQueueName">MQ.QUEUE.NAME</config-property>
                     <config-property name="baseQueueManagerName">MQ.QUEUE.MANAGER</config-property>
-                </admin-object>
-                <admin-object class-name="com.ibm.mq.connector.outbound.MQTopicProxy" jndi-name="java:jboss/MQ.TOPIC.NAME" pool-name="MQ.TOPIC.NAME">
-                    <config-property name="baseTopicName">MQ.TOPIC.NAME</config-property>
-                    <config-property name="brokerPubQueueManager">MQ.QUEUE.MANAGER</config-property>
                 </admin-object>
             </admin-objects>
         </resource-adapter>
