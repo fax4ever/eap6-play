@@ -29,7 +29,6 @@ public class MessageProducerJms {
     public void start() {
 
         sendMessage();
-        log.info("message sent");
 
     }
 
@@ -44,6 +43,7 @@ public class MessageProducerJms {
             connection.start();
             TextMessage message = session.createTextMessage("{{ Message Body }}");
             messageProducer.send(message);
+            log.info("message sent");
 
         } catch (JMSException e) {
 
