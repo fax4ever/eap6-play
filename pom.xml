@@ -35,6 +35,7 @@
         <module>eap6-jta</module>
         <module>eap6-client-cert</module>
         <module>eap6-tour</module>
+        <module>eap6-jms-wmq</module>
     </modules>
 
     <properties>
