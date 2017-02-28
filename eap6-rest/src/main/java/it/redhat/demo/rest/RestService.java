@@ -1,5 +1,8 @@
+package it.redhat.demo.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import it.redhat.demo.model.Command;
 
 import javax.ws.rs.*;
 
@@ -34,6 +37,12 @@ public class RestService {
     @Path("error")
     public void error() {
         throw new RuntimeException();
+    }
+    
+    @POST
+    @Path("command")
+    public void command(Command command) {
+    	log.info("receive command {}", command);
     }
 
 }
