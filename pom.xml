@@ -36,6 +36,7 @@
         <module>eap6-client-cert</module>
         <module>eap6-tour</module>
         <module>eap6-jms-wmq</module>
+        <module>eap6-jaxb</module>
     </modules>
 
     <properties>
