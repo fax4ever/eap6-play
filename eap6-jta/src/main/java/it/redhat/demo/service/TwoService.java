@@ -1,6 +1,6 @@
 package it.redhat.demo.service;
 
-import it.redhat.demo.exception.MyException;
+import it.redhat.demo.mapper.MyException;
 
 import javax.ejb.ApplicationException;
 import javax.ejb.Stateless;

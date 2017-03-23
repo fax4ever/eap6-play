@@ -1,4 +1,4 @@
-package it.redhat.demo.exception;
+package it.redhat.demo.mapper;
 
 /**
  * Created by fabio on 13/11/16.
