@@ -1,5 +1,6 @@
 package it.redhat.demo.rest;
 
+import it.redhat.demo.model.Clue;
 import it.redhat.demo.model.Task;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.xml.bind.JAXB;
+import java.io.StringWriter;
 
 /**
  * @author Fabio Massimo Ercoli
@@ -34,6 +37,32 @@ public class RestService {
         task.setTitle("My Task");
 
         return task;
+    }
+
+    @GET
+    @Path("jaxb/task")
+    @Produces({ "application/xml" })
+    public String jaxbTask() {
+        // explicit jaxb
+        Task task = new Task();
+        task.setId(1l);
+        task.setTitle("My Task");
+
+        StringWriter w = new StringWriter();
+        JAXB.marshal(task, w);
+
+        return w.toString();
+    }
+
+    @GET
+    @Path("clue")
+    @Produces({ "application/xml" })
+    public Clue clue() {
+        Clue clue = new Clue();
+        clue.setUpper("Going ...");
+        clue.setDecision(7l);
+
+        return clue;
     }
 
 }
