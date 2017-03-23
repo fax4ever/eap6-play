@@ -10,6 +10,7 @@ public class Clue {
 
     private String upper;
     private Long decision;
+    private Contract contract;
 
     public String getUpper() {
         return upper;
@@ -25,5 +26,13 @@ public class Clue {
 
     public void setDecision(Long decision) {
         this.decision = decision;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 }
