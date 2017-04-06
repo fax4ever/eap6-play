@@ -1,0 +1,29 @@
+<ui:composition template="WEB-INF/template/default.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j">
+
+    <ui:define name="title">
+        Richfaces 4 Jsf 2.1 Page
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form prependId="false">
+
+            <div class="form-group row">
+                <h:outputLabel styleClass="col-xs-2" value="Name" for="nameInput"/>
+                <h:inputText id="nameInput" value="#{richBean.name}">
+                    <a4j:ajax event="keyup" render="output"/>
+                </h:inputText>
+            </div>
+
+            <div class="form-group row">
+                <h:panelGroup styleClass="col-xs-12" id="output">
+                    <h:outputText value="Hello #{richBean.name}!" rendered="#{not empty richBean.name}"/>
+                </h:panelGroup>
+            </div>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
