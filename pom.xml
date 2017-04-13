@@ -36,7 +36,8 @@
         <module>eap6-jms-wmq</module>
         <module>eap6-jaxb</module>
         <module>eap6-richfaces</module>
-  </modules>
+        <module>eap6-jpa-lob</module>
+    </modules>
 
     <properties>
 
