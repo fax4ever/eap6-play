@@ -1,6 +1,8 @@
 package it.redhat.demo.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -16,14 +18,14 @@ public class Proposal {
     private Long id;
 
     @Size(min=3, max=9)
-    //@Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
-    //@NotNull
-    //@Column(nullable = false)
+    @Pattern(regexp = "[A-Za-z ]*", message = "must contain only letters and spaces")
+    @NotNull
+    @Column(nullable = false)
     private String title;
 
-    //@Lob
-    //@NotNull
-    //@Column(length = 65535)
+    @Lob
+    @NotNull
+    @Column(length = 65535)
     private String description;
 
     public Long getId() {
