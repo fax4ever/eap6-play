@@ -43,11 +43,11 @@ public class MessageProducerJms {
             connection.start();
             TextMessage message = session.createTextMessage("{{ Message Body }}");
             messageProducer.send(message);
-            log.info("message sent");
+            log.info("message sent {}", message);
 
         } catch (JMSException e) {
 
-            log.info(e.getMessage());
+            log.error(e.getMessage(), e);
 
         } finally {
 

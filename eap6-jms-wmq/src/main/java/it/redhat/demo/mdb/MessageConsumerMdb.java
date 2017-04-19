@@ -4,6 +4,7 @@ import org.jboss.ejb3.annotation.ResourceAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -13,6 +14,11 @@ import javax.jms.TextMessage;
 public class MessageConsumerMdb implements MessageListener {
 
     private static Logger log = LoggerFactory.getLogger(MessageConsumerMdb.class);
+
+    @PostConstruct
+    public void init() {
+        log.info("init mdb");
+    }
 
     @Override
     public void onMessage(Message message) {
