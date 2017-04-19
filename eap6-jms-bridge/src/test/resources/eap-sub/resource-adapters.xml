@@ -28,9 +28,14 @@
                 </connection-definition>
             </connection-definitions>
             <admin-objects>
-                <admin-object class-name="com.ibm.mq.connector.outbound.MQQueueProxy" jndi-name="java:/PlayQueue" pool-name="PlayQueue">
+                <admin-object class-name="com.ibm.mq.connector.outbound.MQQueueProxy" jndi-name="java:/mqRequest" pool-name="mqRequest">
                     <config-property name="baseQueueName">
-                        ${wmq.destination.INPUT}
+                        ${wmq.destination.request}
+                    </config-property>
+                </admin-object>
+                <admin-object class-name="com.ibm.mq.connector.outbound.MQQueueProxy" jndi-name="java:/mqResponse" pool-name="mqResponse">
+                    <config-property name="baseQueueName">
+                        ${wmq.destination.response}
                     </config-property>
                 </admin-object>
             </admin-objects>
