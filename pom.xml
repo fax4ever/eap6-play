@@ -37,6 +37,7 @@
         <module>eap6-jaxb</module>
         <module>eap6-richfaces</module>
         <module>eap6-jpa-lob</module>
+        <module>eap6-jms-bridge</module>
     </modules>
 
     <properties>

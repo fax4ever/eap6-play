@@ -1,0 +1,39 @@
+<subsystem xmlns="urn:jboss:domain:resource-adapters:1.1">
+    <resource-adapters>
+        <resource-adapter id="wmq.jmsra.rar">
+            <archive>
+                wmq.jmsra.rar
+            </archive>
+            <transaction-support>LocalTransaction</transaction-support>
+            <connection-definitions>
+                <connection-definition class-name="com.ibm.mq.connector.outbound.ManagedConnectionFactoryImpl" jndi-name="java:/MQConnectionFactory" pool-name="MQConnectionFactory">
+                    <config-property name="channel">
+                        ${wmq.channel}
+                    </config-property>
+                    <config-property name="hostName">
+                        ${wmq.hostName}
+                    </config-property>
+                    <config-property name="transportType">
+                        ${wmq.transportType}
+                    </config-property>
+                    <config-property name="queueManager">
+                        ${wmq.queueManager}
+                    </config-property>
+                    <config-property name="port">
+                        ${wmq.port}
+                    </config-property>
+                    <security>
+                        <application/>
+                    </security>
+                </connection-definition>
+            </connection-definitions>
+            <admin-objects>
+                <admin-object class-name="com.ibm.mq.connector.outbound.MQQueueProxy" jndi-name="java:/PlayQueue" pool-name="PlayQueue">
+                    <config-property name="baseQueueName">
+                        ${wmq.destination.INPUT}
+                    </config-property>
+                </admin-object>
+            </admin-objects>
+        </resource-adapter>
+    </resource-adapters>
+</subsystem>
