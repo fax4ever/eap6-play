@@ -34,11 +34,12 @@ public class MessageProducerJms {
 
     private void sendMessage() {
         Connection connection = null;
+        Session session = null;
 
         try {
 
             connection = connectionFactory.createConnection();
-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageProducer messageProducer = session.createProducer(queue);
             connection.start();
             TextMessage message = session.createTextMessage("{{ Message Body }}");
@@ -54,8 +55,11 @@ public class MessageProducerJms {
             if (connection != null) {
                 try {
                     connection.close();
-                } catch (JMSException e) {
-                    log.info(e.getMessage());
+                    if (session != null) {
+                        session.close();
+                    }
+                } catch (JMSException ex) {
+                    log.warn("Unable to close connection or session!", ex);
                 }
             }
 
