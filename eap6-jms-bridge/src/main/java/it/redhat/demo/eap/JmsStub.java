@@ -13,7 +13,7 @@ import java.util.Enumeration;
  * Created by fabio.ercoli@redhat.com on 19/04/17.
  */
 
-@MessageDriven(name = "PlayMdb", activationConfig = {
+@MessageDriven(name = "JmsStub", activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationType", propertyValue ="javax.jms.Queue"),
         @ActivationConfigProperty(propertyName = "destination", propertyValue = "queue/KIE.SERVER.REQUEST"),
         @ActivationConfigProperty(propertyName = "acknowledgeMode", propertyValue = "Auto-acknowledge")

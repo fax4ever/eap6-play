@@ -3,6 +3,7 @@ package it.redhat.demo.wmq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -17,7 +18,7 @@ import java.util.UUID;
 @Startup
 public class JmsDriver {
 
-    private static final long TIME_OUT = 360000;
+    private static final long TIME_OUT = 1000;
     private static final Logger LOG = LoggerFactory.getLogger(JmsDriver.class);
 
     @Resource(mappedName = "java:/MQConnectionFactory")
@@ -29,7 +30,8 @@ public class JmsDriver {
     @Resource(mappedName = "java:/mqResponse")
     private Queue responseQueue;
 
-    public String sendAndReceive() {
+    @PostConstruct
+    public void sendAndReceive() {
 
         // for request
         String corrId = UUID.randomUUID().toString();
@@ -44,7 +46,7 @@ public class JmsDriver {
             connection = connectionFactory.createConnection();
             session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageProducer messageProducer = session.createProducer(requestQueue);
-            MessageConsumer messageConsumer = session.createConsumer(responseQueue, selector);
+            MessageConsumer messageConsumer = session.createConsumer(responseQueue);
             connection.start();
 
             TextMessage requestMessage = session.createTextMessage("CIAOOO!!");
@@ -61,8 +63,6 @@ public class JmsDriver {
 
             TextMessage responseMessage = (TextMessage) messageConsumer.receive(TIME_OUT);
             LOG.info("received message\n{}", responseMessage);
-
-            return responseMessage.getText();
 
         } catch (JMSException ex) {
 
