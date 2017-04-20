@@ -1,5 +1,6 @@
 package it.redhat.demo.wmq;
 
+import it.redhat.demo.qualifier.StartProcess;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import javax.inject.Inject;
 import javax.jms.*;
 import java.util.UUID;
 
@@ -30,6 +32,10 @@ public class JmsDriver {
     @Resource(mappedName = "java:/mqResponse")
     private Queue responseQueue;
 
+    @Inject
+    @StartProcess
+    private String startProcessPayload;
+
     @PostConstruct
     public void sendAndReceive() {
 
@@ -44,12 +50,12 @@ public class JmsDriver {
         try {
 
             connection = connectionFactory.createConnection();
-            session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            session = connection.createSession(true, Session.CLIENT_ACKNOWLEDGE);
             MessageProducer messageProducer = session.createProducer(requestQueue);
             MessageConsumer messageConsumer = session.createConsumer(responseQueue);
             connection.start();
 
-            TextMessage requestMessage = session.createTextMessage("CIAOOO!!");
+            TextMessage requestMessage = session.createTextMessage(startProcessPayload);
 
             requestMessage.setJMSCorrelationID(corrId);
             requestMessage.setIntProperty("serialization_format", 2);
