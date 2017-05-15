@@ -19,7 +19,7 @@ public class ProposalEntity {
     @SequenceGenerator(sequenceName = "PROPOSAL_ID_SEQ", name = "PROPOSAL_ID_GENERATOR")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "subject")
     private SubjectEntity subject;
 

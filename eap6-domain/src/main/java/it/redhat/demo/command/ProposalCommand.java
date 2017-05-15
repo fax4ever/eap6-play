@@ -14,6 +14,14 @@ public class ProposalCommand {
     private String name;
     private LocalDate birth;
 
+    private Integer birthDay;
+    private Integer birthMounth;
+    private Integer birthYear;
+
+    private Integer acquireDay;
+    private Integer acquireMounth;
+    private Integer acquireYear;
+
     public String getTaxcode() {
         return taxcode;
     }
@@ -60,6 +68,54 @@ public class ProposalCommand {
 
     public void setBirth(LocalDate birth) {
         this.birth = birth;
+    }
+
+    public Integer getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Integer birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public Integer getBirthMounth() {
+        return birthMounth;
+    }
+
+    public void setBirthMounth(Integer birthMounth) {
+        this.birthMounth = birthMounth;
+    }
+
+    public Integer getBirthYear() {
+        return birthYear;
+    }
+
+    public void setBirthYear(Integer birthYear) {
+        this.birthYear = birthYear;
+    }
+
+    public Integer getAcquireDay() {
+        return acquireDay;
+    }
+
+    public void setAcquireDay(Integer acquireDay) {
+        this.acquireDay = acquireDay;
+    }
+
+    public Integer getAcquireMounth() {
+        return acquireMounth;
+    }
+
+    public void setAcquireMounth(Integer acquireMounth) {
+        this.acquireMounth = acquireMounth;
+    }
+
+    public Integer getAcquireYear() {
+        return acquireYear;
+    }
+
+    public void setAcquireYear(Integer acquireYear) {
+        this.acquireYear = acquireYear;
     }
 
     @Override

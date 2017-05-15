@@ -22,8 +22,8 @@ public class BookValueObject {
     private String username;
     private Date insert;
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
     public String getPath() {

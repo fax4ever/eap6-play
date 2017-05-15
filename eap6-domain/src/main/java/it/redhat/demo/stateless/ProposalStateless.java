@@ -10,8 +10,13 @@ import org.slf4j.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by fabio.ercoli@redhat.com on 15/05/17.
@@ -29,7 +34,7 @@ public class ProposalStateless {
     @Inject
     private ZoneId zone;
 
-    public void saveProposal(ProposalCommand command) {
+    public Long saveProposal(ProposalCommand command) {
 
         Date birth = Date.from(command.getBirth().atStartOfDay(zone).toInstant());
         Date acquire = Date.from(command.getAcquire().atStartOfDay(zone).toInstant());
@@ -49,9 +54,11 @@ public class ProposalStateless {
 
         em.persist(proposal);
 
+        return proposal.getId();
+
     }
 
-    public void book(BookCommand command) {
+    public Long book(BookCommand command) {
 
         ProposalEntity proposal = em.find(ProposalEntity.class, command.getProposalId());
 
@@ -62,13 +69,26 @@ public class ProposalStateless {
 
         proposal.addBook(book);
 
-        em.merge(book);
+        em.merge(proposal);
+
+        return book.getId();
 
     }
 
     public ProposalEntity getProposal(Long id) {
 
         return em.find(ProposalEntity.class, id);
+
+    }
+
+    public List<ProposalEntity> getAllProposals() {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<ProposalEntity> cq = cb.createQuery(ProposalEntity.class);
+        Root<ProposalEntity> rootEntry = cq.from(ProposalEntity.class);
+        CriteriaQuery<ProposalEntity> all = cq.select(rootEntry);
+        TypedQuery<ProposalEntity> allQuery = em.createQuery(all);
+        return allQuery.getResultList();
 
     }
 
