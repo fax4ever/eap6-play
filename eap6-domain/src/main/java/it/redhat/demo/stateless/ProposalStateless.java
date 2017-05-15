@@ -62,13 +62,17 @@ public class ProposalStateless {
 
         ProposalEntity proposal = em.find(ProposalEntity.class, command.getProposalId());
 
+        if (proposal == null) {
+            throw new RuntimeException("proposal" + command.getProposalId() + "nof found");
+        }
+
         BookValueObject book = new BookValueObject();
         book.setInsert(new Date());
         book.setPath(command.getPath());
         book.setUsername(command.getUsername());
+        em.persist(book);
 
         proposal.addBook(book);
-
         em.merge(proposal);
 
         return book.getId();
@@ -77,7 +81,11 @@ public class ProposalStateless {
 
     public ProposalEntity getProposal(Long id) {
 
-        return em.find(ProposalEntity.class, id);
+        ProposalEntity proposal = em.find(ProposalEntity.class, id);
+
+        log.info("proposal: {}", proposal);
+
+        return proposal;
 
     }
 
@@ -88,7 +96,11 @@ public class ProposalStateless {
         Root<ProposalEntity> rootEntry = cq.from(ProposalEntity.class);
         CriteriaQuery<ProposalEntity> all = cq.select(rootEntry);
         TypedQuery<ProposalEntity> allQuery = em.createQuery(all);
-        return allQuery.getResultList();
+        List<ProposalEntity> resultList = allQuery.getResultList();
+
+        log.info("proposals: {}", resultList);
+
+        return resultList;
 
     }
 

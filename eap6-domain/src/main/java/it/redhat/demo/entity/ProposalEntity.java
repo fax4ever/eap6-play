@@ -29,7 +29,7 @@ public class ProposalEntity {
     @Temporal(TemporalType.DATE)
     private Date start;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<BookValueObject> books = new ArrayList<>();
 
     private Integer amount;
@@ -68,6 +68,10 @@ public class ProposalEntity {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public List<BookValueObject> getBooks() {
+        return books;
     }
 
     public void addBook(BookValueObject book) {
@@ -131,8 +135,8 @@ public class ProposalEntity {
                 ", subject=" + subject +
                 ", acquire=" + acquire +
                 ", start=" + start +
+                ", books=" + books +
                 ", amount=" + amount +
                 '}';
     }
-
 }
