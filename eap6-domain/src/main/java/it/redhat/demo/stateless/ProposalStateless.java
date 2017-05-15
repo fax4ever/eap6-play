@@ -1,6 +1,8 @@
 package it.redhat.demo.stateless;
 
+import it.redhat.demo.command.BookCommand;
 import it.redhat.demo.command.ProposalCommand;
+import it.redhat.demo.entity.BookValueObject;
 import it.redhat.demo.entity.ProposalEntity;
 import it.redhat.demo.entity.SubjectEntity;
 import org.slf4j.Logger;
@@ -43,7 +45,24 @@ public class ProposalStateless {
         subject.setName(command.getName());
         subject.setBirth(birth);
 
+        proposal.setSubject(subject);
+
         em.persist(proposal);
+
+    }
+
+    public void book(BookCommand command) {
+
+        ProposalEntity proposal = em.find(ProposalEntity.class, command.getProposalId());
+
+        BookValueObject book = new BookValueObject();
+        book.setInsert(new Date());
+        book.setPath(command.getPath());
+        book.setUsername(command.getUsername());
+
+        proposal.addBook(book);
+
+        em.merge(book);
 
     }
 
