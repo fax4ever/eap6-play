@@ -66,4 +66,10 @@ public class ProposalStateless {
 
     }
 
+    public ProposalEntity getProposal(Long id) {
+
+        return em.find(ProposalEntity.class, id);
+
+    }
+
 }
