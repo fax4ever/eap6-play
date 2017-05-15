@@ -16,11 +16,11 @@
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>user</web-resource-name>
-            <url-pattern>/user/*</url-pattern>
+            <web-resource-name>username</web-resource-name>
+            <url-pattern>/username/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>user</role-name>
+            <role-name>username</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -31,7 +31,7 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>manager</role-name>
-            <role-name>user</role-name>
+            <role-name>username</role-name>
         </auth-constraint>
     </security-constraint>
 
@@ -44,7 +44,7 @@
         <role-name>manager</role-name>
     </security-role>
     <security-role>
-        <role-name>user</role-name>
+        <role-name>username</role-name>
     </security-role>
 
 </web-app>

@@ -4,7 +4,7 @@
             <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
             <driver>h2</driver>
             <security>
-                <user-name>sa</user-name>
+                <username-name>sa</username-name>
                 <password>sa</password>
             </security>
         </datasource>
@@ -17,7 +17,7 @@
                 <max-pool-size>300</max-pool-size>
             </pool>
             <security>
-                <user-name>root</user-name>
+                <username-name>root</username-name>
                 <password>root</password>
             </security>
         </datasource>
@@ -30,7 +30,7 @@
                 <max-pool-size>300</max-pool-size>
             </pool>
             <security>
-                <user-name>root</user-name>
+                <username-name>root</username-name>
                 <password>root</password>
             </security>
             <validation>
@@ -48,7 +48,7 @@
                 <max-pool-size>300</max-pool-size>
             </pool>
             <security>
-                <user-name>root</user-name>
+                <username-name>root</username-name>
                 <password>root</password>
             </security>
             <validation>

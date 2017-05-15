@@ -56,7 +56,7 @@
                     </timeout>
                     <recovery>
                         <recover-credential>
-                            <user-name>redhat</user-name>
+                            <username-name>redhat</username-name>
                             <password>redhat</password>
                         </recover-credential>
                     </recovery>

@@ -11,7 +11,7 @@ CREATE TABLE `fabio`.`roles` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `user_idx` (`username` ASC),
-  CONSTRAINT `user`
+  CONSTRAINT `username`
   FOREIGN KEY (`username`)
   REFERENCES `fabio`.`users` (`username`)
     ON DELETE NO ACTION
@@ -20,7 +20,7 @@ CREATE TABLE `fabio`.`roles` (
 INSERT INTO `fabio`.`users` (`username`, `password`) VALUES ('fabio', 'fabio');
 INSERT INTO `fabio`.`users` (`username`, `password`) VALUES ('chiara', 'chiara');
 INSERT INTO `fabio`.`roles` (`username`, `rolename`) VALUES ('fabio', 'admin');
-INSERT INTO `fabio`.`roles` (`username`, `rolename`) VALUES ('fabio', 'user');
+INSERT INTO `fabio`.`roles` (`username`, `rolename`) VALUES ('fabio', 'username');
 INSERT INTO `fabio`.`roles` (`username`, `rolename`) VALUES ('chiara', 'manager');
 
 SELECT password FROM fabio.users where username='chiara';
