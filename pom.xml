@@ -41,6 +41,7 @@
         <module>eap6-domain</module>
         <module>eap6-rs</module>
         <module>eap6-ws</module>
+        <module>eap6-large-header</module>
     </modules>
 
     <properties>
