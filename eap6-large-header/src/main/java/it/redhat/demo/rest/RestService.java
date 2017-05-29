@@ -29,6 +29,7 @@ public class RestService {
         MultivaluedMap<String, String> requestHeaders = headers.getRequestHeaders();
         requestHeaders.forEach((key, value) -> {
             log.info("Header name {} size {} value {}", key, value.get(0).length(), value);
+            response[0] += key.length();
             value.forEach(val -> {
                 response[0] += val.length();
             });
