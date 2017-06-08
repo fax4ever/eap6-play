@@ -42,6 +42,7 @@
         <module>eap6-rs</module>
         <module>eap6-ws</module>
         <module>eap6-large-header</module>
+        <module>eap6-principal-roles</module>
     </modules>
 
     <properties>
@@ -54,7 +55,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
 
         <!-- JEE 6 EAP Implementation -->
-        <version.jboss.eap>6.4.7.GA</version.jboss.eap>
+        <version.jboss.eap>6.4.8.GA</version.jboss.eap>
         <version.org.jboss.spec.jboss.javaee.6.0>3.0.2.Final-redhat-15</version.org.jboss.spec.jboss.javaee.6.0>
         <jboss.ejb3.ext.api>2.1.0</jboss.ejb3.ext.api>
         <jboss.ejb.client.bom>7.2.0.Final</jboss.ejb.client.bom>
