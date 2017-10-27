@@ -1,10 +1,13 @@
 package it.redhat.demo.rest;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import it.redhat.demo.model.Command;
-
-import javax.ws.rs.*;
 
 /**
  * @author Fabio Massimo Ercoli
@@ -12,7 +15,7 @@ import javax.ws.rs.*;
  *         on 18/07/16
  */
 
-@Path("")
+@Path("/")
 public class RestService {
 
     Logger log = LoggerFactory.getLogger(RestService.class);

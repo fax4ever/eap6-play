@@ -7,6 +7,6 @@ import javax.ws.rs.core.Application;
  *         fabio.ercoli@redhat.com
  *         on 18/07/16
  */
-@ApplicationPath("")
+@ApplicationPath("/")
 public class RestConfig extends Application {
 }
