@@ -43,6 +43,7 @@
         <module>eap6-ws</module>
         <module>eap6-large-header</module>
         <module>eap6-principal-roles</module>
+        <module>eap6-rs-client</module>
     </modules>
 
     <properties>
